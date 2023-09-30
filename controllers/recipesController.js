@@ -39,9 +39,7 @@ const getAllRecipes = async (req, res) => {
     }
 
     res.status(200).json({
-      data: {
-        recipes,
-      },
+      recipes,
       message: "All recipes retrieved successfully",
     });
   } catch (err) {
