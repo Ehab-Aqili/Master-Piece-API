@@ -47,15 +47,15 @@ const createUser = async (req, res) => {
       const message = "Thanks for Registering";
 
       res.status(201).json({
-        data: {
+        user: {
           username: user.username,
           email: user.email,
           favorite: user.favorite,
           meals: user.meals,
           calories: user.calories,
           date_birth: user.date_birth,
-          token: user.token,
         },
+        token: user.token,
         message: { message },
       });
     } else {
@@ -83,8 +83,9 @@ const login = async (req, res) => {
         // console.log(emailAndPassExists._id);
         const token = createToken(emailAndPassExists._id);
         res.status(201).json({
-          token,
-          userId: emailAndPassExists._id,
+          user:
+          {
+            userId: emailAndPassExists._id,
           role: emailAndPassExists.role,
           username: emailAndPassExists.username,
           email: emailAndPassExists.email,
@@ -92,6 +93,10 @@ const login = async (req, res) => {
           meals: emailAndPassExists.meals,
           calories: emailAndPassExists.calories,
           date_birth: emailAndPassExists.date_birth,
+          },
+          token,
+          message: "User Login Successfully"
+          
         });
         // console.log("Login Successfull");
       } else {
