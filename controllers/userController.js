@@ -172,7 +172,8 @@ const getFavorite = async (req, res) => {
     const userFavorite = await Recipes.find({ _id: { $in: userFavoriteIds } });
     res.status(200).json({
       data: {
-        userFavorite,
+        userFavorite: { userFavorite },
+
       },
     });
   } catch (err) {
